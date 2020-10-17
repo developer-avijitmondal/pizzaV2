@@ -171,9 +171,10 @@ exports.subtract = function (req, res, next) {
    */
   exports.remove = function (req, res, next) {
     const { email } = req.query;
-    Cart.get({ email })
-      .then(Cart => Cart.remove())
-      .then(deletedCart => res.json(deletedCart))
+    Cart.findOneAndRemove({ email:email }).exec()
+      .then(
+        res.status(200).json({ msg : 'cart removed' })
+      )
       .catch(err => {
         const error = new APIError(err.message, httpStatus.INTERNAL_SERVER_ERROR, true);
         return next(error);
