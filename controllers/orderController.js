@@ -7,60 +7,34 @@ require('dotenv').config();
 var API_KEY = process.env.API_key;
 var DOMAIN = process.env.API_base_URL;
 var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
-const maingun = require('../');
+const maingun = require('../helpers/email');
+var mg = require('nodemailer-mailgun-transport');
+var nodemailer = require('nodemailer');
+var auth =  require('../config/config.json');
 
 
-sendMail = function(sender_email, reciever_email, 
-  email_subject, email_body){ 
 
-  const data = { 
-  "from": sender_email, 
-  "to": reciever_email, 
-  "subject": email_subject, 
-  "text": email_body 
-  }; 
 
-  mailgun.messages().send(data, (error, body) => { 
-  if(error) console.log(error) 
-  else console.log(body); 
-  }); 
-} 
+// sendMail = function(sender_email, reciever_email, 
+//   email_subject, email_body){ 
 
-var sender_email = 'sender@gmail.com'
-var receiver_email = 'receiver@gmail.com'
-var email_subject = 'Mailgun Demo'
-var email_body = 'Greetings from geeksforgeeks'
+//   const data = { 
+//   "from": sender_email, 
+//   "to": reciever_email, 
+//   "subject": email_subject, 
+//   "text": email_body 
+//   }; 
 
-// User-defined function to send email 
-sendMail(sender_email, receiver_email,  
-     email_subject, email_body)
+//   mailgun.messages().send(data, (error, body) => { 
+//   if(error) console.log(error) 
+//   else console.log(body); 
+//   }); 
+// } 
 
-exports.sendEmail = function (req, res, next) {
-  const data = {
-    from: 'Excited User <me@samples.mailgun.org>',
-    to: 'developer.avijitmondal@gmail.com',
-    subject: 'Hello',
-    text: 'Testing some Mailgun awesomeness!'
-  };
-  
-  mailgun.messages().send(data, (error, body) => {
-    console.log(error);
-    try {
-      if(error) throw new error(error)
-      console.log(body);
-      return res.json(body);
-    } catch (error) {
-      throw new Error(error);      
-    }
-    // if(error){
-    //   res.json
-    //   throw new Error(error);
-    // }
-    // res.status(500).json({ err :  })
-    // console.log(body);
-    // return res.json(body);
-  });
-};
+exports.makeOrder = async (req, res) => {
+
+}
+
 
 /**
  * Load product and append to req.
