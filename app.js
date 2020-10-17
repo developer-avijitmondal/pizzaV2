@@ -29,7 +29,12 @@ app.use(passport.initialize());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v2/users', usersRouter);
+app.use('/api/v2/auth',require('./routes/auth'));
+app.use('/files', express.static("uploads"));
+app.use("/api/v2/product", require("./routes/productRoute"));
+app.use("/api/v2/cart", require('./routes/cartRoute'));
+app.use("/api/v2/orders", require('./routes/orders'));
 
 //connect DB
 connectDB();
