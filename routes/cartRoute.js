@@ -5,7 +5,7 @@ const validator = require("../helpers/validator");
 
 // router.post("/", auth, validator.addCart, cartController.addItemToCart);
 router.post("/", auth, validator.addCart, cartController.newToCart);//newToCart
-router.get("/", auth, cartController.getCart);
+router.get("/", auth, cartController.get);
 router.delete("/empty-cart", auth, cartController.emptyCart);
 
 module.exports = router;
