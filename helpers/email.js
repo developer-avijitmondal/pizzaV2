@@ -20,7 +20,7 @@ var nodemailer = require('nodemailer');
 //     }); 
 // };
 
-exports.sendEmail = async (reciever_email,email_body) => {
+exports.sendEmail = async (reciever_email) => {
     var transporter = nodemailer.createTransport(
         {
             service: 'Gmail',
