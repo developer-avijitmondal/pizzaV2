@@ -11,8 +11,8 @@ router.get('/', OrderController.list);
 // router.get('/email', OrderController.sendEmail);
 // router.post('/create', OrderController.placeOrder);
 router.post('/create',auth,validator.makeOrder, OrderController.makeOrder);
-router.get('/:orderId', OrderController.get);
-router.param('orderId', OrderController.load);
+// router.get('/:orderId', OrderController.get);
+// router.param('orderId', OrderController.load);
 module.exports = router;
 
 // config.jwtMiddleware,
