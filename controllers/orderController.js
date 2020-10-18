@@ -11,8 +11,8 @@ const maingun = require('../helpers/email');
 var mg = require('nodemailer-mailgun-transport');
 var nodemailer = require('nodemailer');
 var auth =  require('../config/config.json');
-
-
+const { check, body, validationResult } = require('express-validator');
+const email = require('../helpers/email')
 
 
 // sendMail = function(sender_email, reciever_email, 
@@ -32,7 +32,23 @@ var auth =  require('../config/config.json');
 // } 
 
 exports.makeOrder = async (req, res) => {
-
+  // Finds the validation errors in this request and wraps them in an object with handy functions
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  // console.log(req.body);
+  const { cart_id,email,name,postCode,paymentMethod } = req.body;
+  const orderData = {
+    cart_id:cart_id,
+    email: email,
+    name:name,
+    postCode:postCode,
+    paymentMethod:paymentMethod
+  }
+  order =  new Order(cartData);
+  order.save()
+  res.json(order);
 }
 
 
