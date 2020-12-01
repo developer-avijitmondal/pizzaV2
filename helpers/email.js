@@ -1,8 +1,8 @@
 require('dotenv').config();
-var API_KEY = process.env.API_key;
-var DOMAIN = process.env.API_base_URL;
-var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
-var mg = require('nodemailer-mailgun-transport');
+// var API_KEY = process.env.API_key;
+// var DOMAIN = process.env.API_base_URL;
+// var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+// var mg = require('nodemailer-mailgun-transport');
 var nodemailer = require('nodemailer');
 
 // exports.sendEmail = async (sender_email, reciever_email, 
